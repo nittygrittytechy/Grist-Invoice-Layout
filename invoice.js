@@ -45,17 +45,17 @@ function addDemo(row) {
         Date: '.Date',
         Service: '.Service',
         Description: 'Items[0].Description',
-        Quantity: '.Quantity',
+        Quantity: '.Qty',
         Total: '.Total',
-        Price: '.Price',
+        Price: '.Rate',
       },
       {
          Date: '.Date',
         Service: '.Service', 
         Description: 'Items[1].Description',
-        Quantity: '.Quantity',
+        Quantity: '.Qty',
         Total: '.Total',
-        Price: '.Price',
+        Price: '.Rate',
       },
     ];
   }
@@ -174,7 +174,7 @@ function updateInvoice(row) {
     addDemo(row);
     if (!row.Subtotal && !row.Total && row.Items && Array.isArray(row.Items)) {
       try {
-        row.Subtotal = row.Items.reduce((a, b) => a + b.Price * b.Quantity, 0);
+        row.Subtotal = row.Items.reduce((a, b) => a + b.Rate * b.Qty, 0);
         row.Total = row.Subtotal;
       } catch (e) {
         console.error(e);

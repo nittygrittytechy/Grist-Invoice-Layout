@@ -42,12 +42,16 @@ function addDemo(row) {
   if (!row.Items) {
     row.Items = [
       {
+        Date: '.Date',
+        Service: '.Service',
         Description: 'Items[0].Description',
         Quantity: '.Quantity',
         Total: '.Total',
         Price: '.Price',
       },
       {
+         Date: '.Date',
+        Service: '.Service', 
         Description: 'Items[1].Description',
         Quantity: '.Quantity',
         Total: '.Total',

@@ -27,7 +27,7 @@ const exampleData = {
   Items: [
     {
       Date: Date.parse('2020-10-12') / 1000,
-      Service: 'Flat Fee'
+      Service: 'Flat Fee',
       Description: 'Wolf Whistle',
       Price: 35,
       Quantity: 3,
@@ -35,7 +35,7 @@ const exampleData = {
     },
     {
       Date: Date.parse('2020-10-12') / 1000,
-      Service: 'Flat Fee'
+      Service: 'Flat Fee',
       Description: 'Bravo',
       Price: 30,
       Quantity: 17,

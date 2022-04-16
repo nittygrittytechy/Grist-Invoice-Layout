@@ -45,17 +45,17 @@ function addDemo(row) {
         Date: '.Date',
         Service: '.Service',
         Description: 'Items[0].Description',
-        Quantity: '.Qty',
+        Qty: '.Qty',
         Total: '.Total',
-        Price: '.Rate',
+        Rate: '.Rate',
       },
       {
-         Date: '.Date',
+        Date: '.Date',
         Service: '.Service', 
         Description: 'Items[1].Description',
-        Quantity: '.Qty',
+        Qty: '.Qty',
         Total: '.Total',
-        Price: '.Rate',
+        Rate: '.Rate',
       },
     ];
   }

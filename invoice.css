@@ -158,7 +158,7 @@ div.summary::after {
   content: "\2709";
   margin-right: 0.5em;  
 }
-.website::before{content: "\"; margin-right:0.5em;}
+.website::before{content: "\1F310"; margin-right:0.5em;}
   
 .thanks {
   text-align: right;

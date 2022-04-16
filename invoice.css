@@ -28,9 +28,10 @@ body {
 }
 
 .supplier {
-  color: #4945a4;
+  color: #4f4f4e;
   display: block;
 }
+.supplier a{color:#4f4f4e}
 
 .block {
   padding-left: 5px;

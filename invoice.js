@@ -8,7 +8,7 @@ function ready(fn) {
 
 function addDemo(row) {
   if (!row.Issued && !row.Due) {
-    for (const key of ['Number', 'Issued', 'Due', 'Matter1', 'Matter2']) {
+    for (const key of ['Number', 'Issued', 'Due', 'Matter']) {
       if (!row[key]) { row[key] = key; }
     }
     for (const key of ['Subtotal', 'Deduction', 'Taxes', 'Total']) {

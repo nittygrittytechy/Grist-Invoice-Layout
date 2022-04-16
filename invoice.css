@@ -41,14 +41,14 @@ body {
   padding: 1px;
   margin-top: 1em;
   margin-bottom: 1em;
-  background: #ff8000;
+  background: #f7f7f7;
   -webkit-print-color-adjust: exact !important;
   color-adjust: exact !important;
 }
 
 .client .title, .summary .title {
   margin-left: 4px;
-  color: white;
+  color: #4f4f4e;
   text-transform: uppercase;
 }
 
@@ -65,7 +65,7 @@ table.items {
 
 table.items th {
   text-align: left;
-  color: white;
+  color: #4f4f4e;
   text-transform: uppercase;
   font-weight: normal;
   padding: 4px;
@@ -86,7 +86,7 @@ table.items td {
 }
 
 .name {
-  color: #000080;
+  color: #4945a4;
 }
 
 .address {

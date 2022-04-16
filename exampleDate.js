@@ -2,6 +2,7 @@ const exampleData = {
   Number: 14999,
   Issued: Date.parse('2020-10-12') / 1000,
   Due: Date.parse('2020-11-12') / 1000,
+  Matter: '0001PK-NP
 
   Invoicer: {
     Name: 'Thunderous Applause',
@@ -25,12 +26,16 @@ const exampleData = {
 
   Items: [
     {
+      Date: Date.parse('2020-10-12') / 1000,
+      Service: 'Flat Fee'
       Description: 'Wolf Whistle',
       Price: 35,
       Quantity: 3,
       Total: 105,
     },
     {
+      Date: Date.parse('2020-10-12') / 1000,
+      Service: 'Flat Fee'
       Description: 'Bravo',
       Price: 30,
       Quantity: 17,

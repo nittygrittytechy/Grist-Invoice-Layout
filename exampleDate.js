@@ -2,7 +2,7 @@ const exampleData = {
   Number: 14999,
   Issued: Date.parse('2020-10-12') / 1000,
   Due: Date.parse('2020-11-12') / 1000,
-  Matter: '0001PK-NP
+  Matter: '0001PK-NP'
 
   Invoicer: {
     Name: 'Thunderous Applause',

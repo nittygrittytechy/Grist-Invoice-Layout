@@ -1,298 +1,235 @@
-body {
-  font-family: Sans-Serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 5px;
-}
-
-.meta {
-  color: #ff8000;
-}
-
-.header .title {
-  font-size: 300%;
-  font-weight: bold;
-}
-
-.header .meta {
-  text-transform: uppercase;
-}
-
-.info .meta {
-  text-transform: uppercase;
-}
-
-.info .meta::after {
-  color: black;
-  content: " :";
-}
-
-.supplier {
-  color: #4682B4;
-  display: block;
-}
-
-.block {
-  padding-left: 5px;
-  display: block;
-}
-
-.client, .items, .summary {
-  padding: 1px;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  background: #ff8000;
-  -webkit-print-color-adjust: exact !important;
-  color-adjust: exact !important;
-}
-
-.client .title, .summary .title {
-  margin-left: 4px;
-  color: white;
-  text-transform: uppercase;
-}
-
-.client .details, .summary .details {
-  padding: 4px;
-  background: #fff;
-}
-
-table.items {
-  width: 100%;
-  border: 1px solid #ff8000;
-  border-collapse: collapse;
-}
-
-table.items th {
-  text-align: left;
-  color: white;
-  text-transform: uppercase;
-  font-weight: normal;
-  padding: 4px;
-}
-
-table.items td {
-  background: #fff;
-  padding: 4px;
-}
-
-.client .title, .summary .title, table.items th, .help .title {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.money, .number {
-  text-align: right;
-}
-
-.name {
-  color: #000080;
-}
-
-.address {
-  padding-bottom: 1em;
-}
-
-div.date-tag {
-  display: inline-block;
-  min-width: 80px;
-}
-
-div.top {
-  display: flex;
-  width: 100%;
-  padding: 0px;
-  justify-content: space-between;
-}
-
-div.summary {
-  display: flex;
-  width: 100%;
-  padding: 0px;
-  align-items: flex-end;
-}
-
-div.summary .part, div.summary .total {
-  padding: 10px;
-}
-
-div.summary .part {
-  width: 20%;
-  padding-right: 20px;
-}
-
-div.summary .total {
-  display: block;
-  flex-grow: 1;
-  background: #000080;
-  font-size: 140%;
-}
-
-div.summary {
-  border-top-right-radius: 2em;
-  border-bottom-right-radius: 2em;
-}
-
-div.summary .total {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-}
-
-div.summary .title, div.summary .details {
-  text-align: right;
-}
-
-div.summary::after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-.phone::before {
-  content: "\260e";
-  margin-right: 0.5em;
-}
-
-.email::before {
-  content: "\2709";
-  margin-right: 0.5em;  
-}
-
-.thanks {
-  text-align: right;
-  color: #C83200;
-  font-size: 200%;
-}
-
-div.instructions, .newlined, p.note {
-  white-space: pre-line;
-}
-
-.app {
-  position: relative;
-}
-
-@media print {
-  div.print {
-    display: none;
+function ready(fn) {
+  if (document.readyState !== 'loading'){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
   }
 }
 
-div.print {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+function addDemo(row) {
+  if (!row.Issued && !row.Due) {
+    for (const key of ['Number', 'Issued', 'Due']) {
+      if (!row[key]) { row[key] = key; }
+    }
+    for (const key of ['Subtotal', 'Deduction', 'Taxes', 'Total']) {
+      if (!(key in row)) { row[key] = key; }
+    }
+    if (!('Note' in row)) { row.Note = '(Anything in a Note column goes here)'; }
+  }
+  if (!row.Invoicer) {
+    row.Invoicer = {
+      Name: 'Invoicer.Name',
+      Street1: 'Invoicer.Street1',
+      Street2: 'Invoicer.Street2',
+      City: 'Invoicer.City',
+      State: '.State',
+      Zip: '.Zip',
+      Email: 'Invoicer.Email',
+      Phone: 'Invoicer.Phone',
+      Website: 'Invoicer.Website'
+    }
+  }
+  if (!row.Client) {
+    row.Client = {
+      Name: 'Client.Name',
+      Street1: 'Client.Street1',
+      Street2: 'Client.Street2',
+      City: 'Client.City',
+      State: '.State',
+      Zip: '.Zip'
+    }
+  }
+  if (!row.Items) {
+    row.Items = [
+      {
+        Description: 'Items[0].Description',
+        Quantity: '.Quantity',
+        Total: '.Total',
+        Price: '.Price',
+      },
+      {
+        Description: 'Items[1].Description',
+        Quantity: '.Quantity',
+        Total: '.Total',
+        Price: '.Price',
+      },
+    ];
+  }
+  return row;
 }
 
-div.print a {
-  background: #C83200;
-  display: block;
-  font-size: 200%;
-  color: white;
-  text-decoration: none;
-  padding: 0.25em;
-  padding-top: 0.5em;
-  padding-right: 0.5em;
-  border-top-right-radius: 0.5em;
-  text-transform: uppercase;
+const data = {
+  count: 0,
+  invoice: '',
+  status: 'waiting',
+  tableConnected: false,
+  rowConnected: false,
+  haveRows: false,
+};
+let app = undefined;
+
+Vue.filter('currency', formatNumberAsUSD)
+function formatNumberAsUSD(value) {
+  if (!value) { return '—'; }
+  const result = Number(value).toLocaleString('en', {
+    style: 'currency', currency: 'USD'
+  })
+  if (result.includes('NaN')) {
+    return value;
+  }
+  return result;
 }
 
-div.print a:hover {
-  background: #4682B4;
+Vue.filter('fallback', function(value, str) {
+  if (!value) {
+    throw new Error("Please provide column " + str);
+  }
+  return value;
+});
+
+Vue.filter('asDate', function(value) {
+  if (typeof(value) === 'number') {
+    value = new Date(value * 1000);
+  }
+  const date = moment.utc(value)
+  return date.isValid() ? date.format('MMMM DD, YYYY') : value;
+});
+
+function tweakUrl(url) {
+  if (!url) { return url; }
+  if (url.toLowerCase().startsWith('http')) {
+    return url;
+  }
+  return 'https://' + url;
+};
+
+function handleError(err) {
+  console.error(err);
+  const target = app || data;
+  target.invoice = '';
+  target.status = String(err).replace(/^Error: /, '');
+  console.log(data);
 }
 
-.done {
-  text-decoration: line-through;
+function prepareList(lst, order) {
+  if (order) {
+    let orderedLst = [];
+    const remaining = new Set(lst);
+    for (const key of order) {
+      if (remaining.has(key)) {
+        remaining.delete(key);
+        orderedLst.push(key);
+      }
+    }
+    lst = [...orderedLst].concat([...remaining].sort());
+  } else {
+    lst = [...lst].sort();
+  }
+  return lst;
 }
 
-div.column-name {
-  display: inline-block;
+function updateInvoice(row) {
+  try {
+    data.status = '';
+    if (row === null) {
+      throw new Error("(No data - not on row - please add or select a row)");
+    }
+    console.log("GOT...", JSON.stringify(row));
+    if (row.References) {
+      try {
+        Object.assign(row, row.References);
+      } catch (err) {
+        throw new Error('Could not understand References column. ' + err);
+      }
+    }
+
+    // Add some guidance about columns.
+    const want = new Set(Object.keys(addDemo({})));
+    const accepted = new Set(['References']);
+    const importance = ['Number', 'Client', 'Items', 'Total', 'Invoicer', 'Due', 'Issued', 'Subtotal', 'Deduction', 'Taxes', 'Note'];
+    if (!(row.Due || row.Issued)) {
+      const seen = new Set(Object.keys(row).filter(k => k !== 'id' && k !== '_error_'));
+      const help = row.Help = {};
+      help.seen = prepareList(seen);
+      const missing = [...want].filter(k => !seen.has(k));
+      const ignoring = [...seen].filter(k => !want.has(k) && !accepted.has(k));
+      const recognized = [...seen].filter(k => want.has(k) || accepted.has(k));
+      if (missing.length > 0) {
+        help.expected = prepareList(missing, importance);
+      }
+      if (ignoring.length > 0) {
+        help.ignored = prepareList(ignoring);
+      }
+      if (recognized.length > 0) {
+        help.recognized = prepareList(recognized);
+      }
+      if (!seen.has('References') && !(row.Issued || row.Due)) {
+        row.SuggestReferencesColumn = true;
+      }
+    }
+    addDemo(row);
+    if (!row.Subtotal && !row.Total && row.Items && Array.isArray(row.Items)) {
+      try {
+        row.Subtotal = row.Items.reduce((a, b) => a + b.Price * b.Quantity, 0);
+        row.Total = row.Subtotal;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    if (row.Invoicer && row.Invoicer.Website && !row.Invoicer.Url) {
+      row.Invoicer.Url = tweakUrl(row.Invoicer.Website);
+    }
+
+    // Fiddle around with updating Vue (I'm not an expert).
+    for (const key of want) {
+      Vue.delete(data.invoice, key);
+    }
+    for (const key of ['Help', 'SuggestReferencesColumn', 'References']) {
+      Vue.delete(data.invoice, key);
+    }
+    data.invoice = Object.assign({}, data.invoice, row);
+
+    // Make invoice information available for debugging.
+    window.invoice = row;
+  } catch (err) {
+    handleError(err);
+  }
 }
 
-.column-name {
-  background: blue;
-  color: white;
-  margin: 2px;
-  padding: 2px;
-  border-radius: 2px;
-  font-style: normal;
-}
+ready(function() {
+  // Update the invoice anytime the document data changes.
+  grist.ready();
+  grist.onRecord(updateInvoice);
 
-.column-recognized {
-  background: green;
-}
+  // Monitor status so we can give user advice.
+  grist.on('message', msg => {
+    // If we are told about a table but not which row to access, check the
+    // number of rows.  Currently if the table is empty, and "select by" is
+    // not set, onRecord() will never be called.
+    if (msg.tableId && !app.rowConnected) {
+      grist.docApi.fetchSelectedTable().then(table => {
+        if (table.id && table.id.length >= 1) {
+          app.haveRows = true;
+        }
+      }).catch(e => console.log(e));
+    }
+    if (msg.tableId) { app.tableConnected = true; }
+    if (msg.tableId && !msg.dataChange) { app.RowConnected = true; }
+  });
 
-.column-expected {
-  background: blue;
-}
+  Vue.config.errorHandler = function (err, vm, info)  {
+    handleError(err);
+  };
 
-.column-ignored {
-  background: red;
-}
+  app = new Vue({
+    el: '#app',
+    data: data
+  });
 
-.help {
-  padding: 1px;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  background: black;
-  color: white;
-}
-
-.help .details {
-  padding: 4px;
-}
-
-.help table {
-  border: none;
-}
-
-.help td.key {
-  text-align: right;
-}
-
-.help table {
-  padding-bottom: 3px;
-}
-
-.help-close {
-  display: float;
-  float: right;
-  max-width: 150px;
-  padding: 5px;
-  border-left: 1px solid white;
-  border-bottom-left-radius: 5px;
-  font-size: 80%;
-  font-style: italic;
-}
-
-.help pre {
-  display: inline-block;
-  background: #ddd;
-  color: #000;
-  padding: 0.25em;
-  margin-left: 1em;
-}
-
-.help .title {
-  margin-left: 4px;
-  text-transform: uppercase;
-}
-
-.status {
-  padding: 4px;
-}
-
-.status .button {
-  display: inline-block;
-  text-decoration: none;
-  color: #000080;
-  background: #ddd;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  border-radius: 0.25em;
-}
-
+  if (document.location.search.includes('demo')) {
+    updateInvoice(exampleData);
+  }
+  if (document.location.search.includes('labels')) {
+    updateInvoice({});
+  }
+});

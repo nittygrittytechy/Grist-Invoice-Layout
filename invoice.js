@@ -11,7 +11,7 @@ function addDemo(row) {
     for (const key of ['Number', 'Issued', 'Due', 'Matter']) {
       if (!row[key]) { row[key] = key; }
     }
-    for (const key of ['Subtotal', 'Deduction', 'Taxes', 'Total']) {
+    for (const key of ['Subtotal', 'LateFee', 'Taxes', 'Total']) {
       if (!(key in row)) { row[key] = key; }
     }
     if (!('Note' in row)) { row.Note = '(Anything in a Note column goes here)'; }
@@ -150,7 +150,7 @@ function updateInvoice(row) {
     // Add some guidance about columns.
     const want = new Set(Object.keys(addDemo({})));
     const accepted = new Set(['References']);
-    const importance = ['Number', 'Client', 'Items', 'Total', 'Invoicer', 'Due', 'Issued', 'Subtotal', 'Deduction', 'Taxes', 'Note'];
+    const importance = ['Number', 'Client', 'Items', 'Total', 'Invoicer', 'Due', 'Issued', 'Subtotal', 'LateFee', 'Taxes', 'Note'];
     if (!(row.Due || row.Issued)) {
       const seen = new Set(Object.keys(row).filter(k => k !== 'id' && k !== '_error_'));
       const help = row.Help = {};

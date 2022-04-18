@@ -147,11 +147,11 @@
             <div class="details">{{ invoice.Subtotal | currency }}</div>
           </div>
           <div class="part">
-            <div class="title">Late Fee</div>
-            <div class="details">{{ invoice.LateFee | currency }}</div>
+            <div class="title">Trust Fund</div>
+            <div class="details">{{ invoice.Deduction | currency }}</div>
           </div>
           <div class="part">
-            <div class="title">Taxes</div>
+            <div class="title">Fees</div>
             <div class="details">{{ invoice.Taxes | currency }}</div>
           </div>
           <div class="total">

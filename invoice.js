@@ -171,15 +171,25 @@ function updateInvoice(row) {
         row.SuggestReferencesColumn = true;
       }
     }
-    addDemo(row);
-    if (!row.Subtotal && !row.Total && row.Items && Array.isArray(row.Items)) {
+    addDemo(row); 
+      if (!row.Subtotal && !row.Total && row.Items && Array.isArray(row.Items)) {
+      try {
+        row.Subtotal = row.Items.reduce((a, b) => a + b.Price * b.Quantity, 0);
+        row.Total = row.Subtotal;
+        row.Total = row.Subtotal + (row.Taxes || 0) - (row.Deduction || 0);
+      } catch (e) {
+        console.error(e);
+      } 
+  }
+   /*--- THE OLD VERSION WITH NOT TAXES OR DEDUCTION------
+   if (!row.Subtotal && !row.Total && row.Items && Array.isArray(row.Items)) {
       try {
         row.Subtotal = row.Items.reduce((a, b) => a + b.Rate * b.Qty, 0);
         row.Total = row.Subtotal;
       } catch (e) {
         console.error(e);
       }
-    }
+    }*/
     if (row.Invoicer && row.Invoicer.Website && !row.Invoicer.Url) {
       row.Invoicer.Url = tweakUrl(row.Invoicer.Website);
     }

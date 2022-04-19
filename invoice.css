@@ -149,7 +149,7 @@ div.summary::after {
   clear: both;
 }
 
-.phone::before {
+/*.phone::before {
   content: "\260e";
   margin-right: 0.5em;
 }
@@ -159,7 +159,7 @@ div.summary::after {
   margin-right: 0.5em;  
 }
 .website::before{content: "\1f310"; margin-right:0.5em;}
-  
+ */ 
 .thanks {
   text-align: right;
   color: #f88f39;

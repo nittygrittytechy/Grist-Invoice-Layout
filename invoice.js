@@ -176,7 +176,9 @@ function updateInvoice(row) {
       try {
         row.Subtotal = row.Items.reduce((a, b) => a + b.Rate * b.Qty, 0);
         row.Total = row.Subtotal;
-        row.Total = row.Subtotal + (row.Taxes || 0) - (row.Deduction || 0);
+        /*YOU CAN CHANGE HOW THE COST IS CALCULATED, add or subtract
+        row.Total = row.Subtotal + (row.Taxes || 0) - (row.Deduction || 0);*/
+        row.Total = row.Subtotal * (row.Taxes || 0) - (row.Deduction || 0);
       } catch (e) {
         console.error(e);
       } 

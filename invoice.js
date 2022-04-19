@@ -178,7 +178,7 @@ function updateInvoice(row) {
         row.Total = row.Subtotal;
         /*YOU CAN CHANGE HOW THE COST IS CALCULATED, add or subtract
         row.Total = row.Subtotal + (row.Taxes || 0) - (row.Deduction || 0);*/
-        row.Total = row.Subtotal * (row.Taxes || 0) - (row.Deduction || 0);
+        row.Total = row.Subtotal * (1 + (row.Taxes || 0)) - (row.Deduction || 0);
       } catch (e) {
         console.error(e);
       } 

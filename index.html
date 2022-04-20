@@ -152,7 +152,8 @@
           </div>
           <div class="part">
             <div class="title">Fees</div>
-            <div class="details">{{ invoice.Taxes | currency }}</div>
+            <!--<div class="details">{{ invoice.Taxes | currency }}</div>-->
+            <div class="details">{{ invoice.Taxes | percentage }}</div>
           </div>
           <div class="total">
             <div class="title">Total</div>

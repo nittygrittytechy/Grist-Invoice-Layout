@@ -79,7 +79,8 @@ function formatNumberAsUSD(value) {
   const result = Number(value).toLocaleString('en', {
     style: 'currency', currency: 'USD'
   })
-  if (result.includes('NaN')) {
+  /*CHANGED THE CODE AND ADDED {style: 'currency', currency: 'USD'}*/
+  if (result.includes('NaN', {style: 'currency', currency: 'USD'})) {
     return value;
   }
   return result;

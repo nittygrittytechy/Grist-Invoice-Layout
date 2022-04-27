@@ -75,6 +75,7 @@ let app = undefined;
 /* FOR THE DOLLAR SIGN ON FEES uses CURRENCY---*/
 Vue.filter('currency', formatNumberAsUSD)
 function formatNumberAsUSD(value) {
+  /*ORIGINAL CODE ----> if (!value) { return '—'; }*/
   if (value === null || value === undefined) { return '—'; }
   const result = Number(value).toLocaleString('en', {
     style: 'currency', currency: 'USD'
@@ -88,7 +89,8 @@ function formatNumberAsUSD(value) {
 /*TO ADD A PERCENT SIGN ON FEES*/
 Vue.filter('percentage', formatNumberAsPercentage)
 function formatNumberAsPercentage(value) {
-  if (!value) { return '—'; }
+  /*ORIGINAL CODE ----> if (!value) { return '—'; }*/
+  if (value === null || value === undefined) { return '—'; }
   const result = Number(value).toLocaleString('en', {
     style: 'percent',
   })

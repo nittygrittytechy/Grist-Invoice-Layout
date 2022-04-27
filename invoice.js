@@ -75,7 +75,7 @@ let app = undefined;
 /* FOR THE DOLLAR SIGN ON FEES uses CURRENCY---*/
 Vue.filter('currency', formatNumberAsUSD)
 function formatNumberAsUSD(value) {
-  if (!value) { return '—'; }
+  if (value === null || value === undefined) { return '—'; }
   const result = Number(value).toLocaleString('en', {
     style: 'currency', currency: 'USD'
   })

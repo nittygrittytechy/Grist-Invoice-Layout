@@ -204,7 +204,7 @@
 
         <div class="footer">
           <p class="PayInfo">Please click on the button below to make your payment today.</p>
-        <div class="buttonELF"><a v-bind:href="'https://uslawpros.com/client-payments/?' + new URLSearchParams({invoice: invoice.Number, client: invoice.Client?.Name||''}).toString(), cost: invoice.Total">Pay Now</a></div>
+        <div class="buttonELF"><a v-bind:href="'https://uslawpros.com/client-payments/?' + new URLSearchParams({cost: invoice.Total, invoice: invoice.Number, client: invoice.Client?.Name||''}).toString()">Pay Now</a></div>
           <div class="thanks">
             Thank you!
           </div>

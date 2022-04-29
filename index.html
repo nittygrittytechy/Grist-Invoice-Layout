@@ -140,10 +140,10 @@
             </tr>
           </template>
         </table>
-        <div class="summary">
-         <div class="part">
-           <div class="title">Total Service Charges</div>
-            <div class="details">{{ invoice.Fees | currency }}</div>
+        <div class="ServiceCharge">
+         <div class="SC">
+           <div class="SCtitle">Total Service Charges</div>
+            <div class="SCdetails">{{ invoice.ServiceCharges | currency }}</div>
             </div>
         </div>
         <div class="summary">
@@ -202,7 +202,7 @@
 
         <div class="footer">
           <p class="PayInfo">Please click on the button below to make your payment today.</p>
-        <div class="PayBTN"><!--<a v-bind:href="'https://uslawpros.com/client-payments/?invoice=' + invoice.Number + '&client=' + business">--><button class="buttonELF">Pay Now</button></a>
+        <div class="PayBTN"><a v-bind:href="'https://example.com/example/?' + new URLSearchParams({invoice: invoice.Number, client: invoice.Client?.Name||''}).toString()">Pay Now</a><button class="buttonELF">Pay Now</button></a>
           <div class="thanks">
             Thank you!
           </div>

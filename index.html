@@ -140,15 +140,16 @@
             </tr>
           </template>
         </table>
-
+        <div class="Fees-sec">
+         <div class="part">
+           <div class="title">Fees</div>
+            <div class="details">{{ invoice.Fees | currency }}</div>
+            </div>
+        </div>
         <div class="summary">
           <div class="part">
             <div class="title">Subtotal</div>
             <div class="details">{{ invoice.Subtotal | currency }}</div
-          </div>
-          <div class="part">
-           <div class="title">Fees</div>
-            <div class="details">{{ invoice.Fees | currency }}</div>
             </div>
           <div class="part">
             <div class="title">Trust Fund</div>

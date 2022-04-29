@@ -143,8 +143,11 @@
 
         <div class="summary">
           <div class="part">
+            <!-- SECTIONS WHRRE THE SUBTOTAL SHOW THE TOTAL OF ALL CHARGES
             <div class="title">Subtotal</div>
-            <div class="details">{{ invoice.Subtotal | currency }}</div>
+            <div class="details">{{ invoice.Subtotal | currency }}</div>-->
+            <div class="title">Total</div>
+            <div class="details">{{ invoice.Cost | currency }}</div>
           </div>
           <div class="part">
             <div class="title">Trust Fund</div>

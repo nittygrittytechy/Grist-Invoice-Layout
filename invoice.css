@@ -172,6 +172,7 @@ div.summary::after {
   margin: 4px 2px;
   cursor: pointer;
 }
+.PayInfo{font-size:22px;}
 .thanks {
   text-align: right;
   color: #f88f39;

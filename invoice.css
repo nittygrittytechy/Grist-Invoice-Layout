@@ -312,5 +312,6 @@ div.column-name {
 }
 .ServiceCharge{margin:0 right; text-align:right;background-color:#EAF9EE;padding:10px;}
 .SC{padding-right: 20px;}
-.SCtitle{font-weight:bold;color:#2a2a2a}
+.SCtitle{ color: #4f4f4e;
+  text-transform: uppercase;}
 .SCdetails{color:#093}

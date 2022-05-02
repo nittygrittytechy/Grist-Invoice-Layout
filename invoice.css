@@ -173,7 +173,8 @@ div.summary::after {
   cursor: pointer;
 }
 .buttonELF a {color:#ffffff}
-.buttonELF:hover, a:hover{color:353535;background-color:#ffffff}
+.buttonELF:hover{background-color:#ffffff}
+.buttonELF a:hover{color:#353535}
 .PayInfo{font-size:22px;}
 .thanks {
   text-align: right;

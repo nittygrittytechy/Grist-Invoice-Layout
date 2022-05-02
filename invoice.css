@@ -174,7 +174,7 @@ div.summary::after {
    -webkit-print-color-adjust: exact !important;
   color-adjust: exact !important;}
 .buttonELF a {color:#ffffff;text-decoration: none}
-.buttonELF:hover{background:#f1f1f1;color-adjust: exact !important;}
+.buttonELF:hover{background:#f1f1f1;-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}
 .buttonELF a:hover{color:#353535;text-decoration: none}
 .PayInfo{font-size:22px;}
 .thanks {
@@ -314,7 +314,7 @@ div.column-name {
   margin-bottom: 1px;
   border-radius: 0.25em;
 }
-.ServiceCharge{margin:0 right; text-align:right;background:#EAF9EE;padding:10px}
+.ServiceCharge{margin:0 right; text-align:right;background:#EAF9EE;padding:10px;-webkit-print-color-adjust: exact !important;color-adjust: exact !important}
 .SC{padding-right: 20px;}
 .SCtitle{ color: #4f4f4e;
   text-transform: uppercase;}

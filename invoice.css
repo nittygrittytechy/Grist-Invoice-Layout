@@ -176,7 +176,7 @@ div.summary::after {
 }
 .buttonELF a {color:#ffffff;color-adjust: exact !important;
 }}
-.buttonELF:hover{background-color:#ffffff;color-adjust: exact !important;
+.buttonELF:hover{background-color:#f1f1f1;color-adjust: exact !important;
 }}
 .buttonELF a:hover{color:#353535;color-adjust: exact !important;
 }}

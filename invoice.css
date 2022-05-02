@@ -163,7 +163,7 @@ div.summary::after {
 .buttonELF {
   background-color: #4CAF50; /* Green */
   border: none;
-  color: white;
+  color: #ffffff;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -172,6 +172,8 @@ div.summary::after {
   margin: 4px 2px;
   cursor: pointer;
 }
+.buttonELF a {color:#ffffff}
+.buttonELF:hover, a:hover{color:353535;background-color:#ffffff}
 .PayInfo{font-size:22px;}
 .thanks {
   text-align: right;

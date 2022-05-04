@@ -121,7 +121,8 @@ div.summary .part {
   width: 20%;
   padding-right: 20px;
 }
-
+.partColorChange {background:#f7f7f7; -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;}
 div.summary .total {
   display: block;
   flex-grow: 1;

@@ -148,15 +148,19 @@
             <div class="SCdetails">{{ invoice.Service | currency }}</div>
             </div>
         </div>
+        <div class="part">
+            <div class="title">Total Service Fees</div>
+            <div class="details">{{ invoice.ServiceFees | currency }}</div>
+          </div>
         <div class="summary">
           <div class="part">
             <div class="title">Subtotal</div>
             <div class="details">{{ invoice.Subtotal | currency }}</div>
             </div>
-          <div class="part">
-            <div class="title"><!--Trust Fund--></div>
-            <div class="details"><!--{{ invoice.Deduction | currency }}--></div>
-          </div>
+          <!--<div class="part">
+            <div class="title">Trust Fund</div>
+            <div class="details">{{ invoice.Deduction | currency }}</div>
+          </div>-->
           <div class="part">
             <div class="title"><!--Fees--></div>
             <!--<div class="details">{{ invoice.Taxes | currency }}</div>-->

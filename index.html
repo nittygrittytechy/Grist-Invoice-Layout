@@ -175,11 +175,11 @@
         </div>
 
         <template v-if="invoice.Note">
-          <p class="note">{{ invoice.Note }}</p>
+          <p class="note">Note to Client: {{ invoice.Note }}</p>
         </template>
       
           <template v-if="invoice.TrustBal">
-          <p class="trustbal">${{ invoice.TrustBal | currency }}</p>
+          <p class="trustbal">Trust Balance: ${{ invoice.TrustBal | currency }}</p>
         </template>
 
         <template v-for="help in (invoice.Help ? [invoice.Help] : [])">

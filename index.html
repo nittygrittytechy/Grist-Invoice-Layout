@@ -177,6 +177,10 @@
         <template v-if="invoice.Note">
           <p class="note">{{ invoice.Note }}</p>
         </template>
+      
+          <template v-if="invoice.TrustBal">
+          <p class="trustbal">{{ invoice.TrustBal }}</p>
+        </template>
 
         <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
           <div class="help">

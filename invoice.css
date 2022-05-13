@@ -321,4 +321,4 @@ div.column-name {
 .SCtitle{ color: #4f4f4e;
   text-transform: uppercase;}
 .SCdetails{color:#093}
-.elf-logo img{width:50%;text-align:right;padding:25px 10px}
+.elf-logo img{width:100px;max-width:100%;text-align:right;padding:25px 10px}

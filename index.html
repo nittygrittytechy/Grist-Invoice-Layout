@@ -178,9 +178,9 @@
           <p class="note">Note to Client: {{ invoice.Note }}</p>
         </template>
       
-          <template v-if="invoice.TrustBal">
+         <!-- <template v-if="invoice.TrustBal">
           <p class="trustbal">Trust Balance: ${{ invoice.TrustBal }}</p>
-        </template>
+        </template>-->
 
         <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
           <div class="help">

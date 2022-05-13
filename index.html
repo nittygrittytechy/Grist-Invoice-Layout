@@ -179,7 +179,7 @@
         </template>
       
           <template v-if="invoice.TrustBal">
-          <p class="trustbal">${{ invoice.TrustBal }}</p>
+          <p class="trustbal">${{ invoice.TrustBal | currency }}</p>
         </template>
 
         <template v-for="help in (invoice.Help ? [invoice.Help] : [])">

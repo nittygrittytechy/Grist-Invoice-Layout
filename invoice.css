@@ -186,7 +186,9 @@ div.summary::after {
 div.instructions, .newlined, p.note {
   white-space: pre-line;
 }
-p.note {background-color:#fffee3;padding:10px 5px;color:#353535}
+p.note {background-color:#fffee3;padding:10px 5px;color:#353535; -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important}
+.trustbal{color:#AF0069}
 .app {
   position: relative;
 }

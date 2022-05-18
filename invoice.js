@@ -16,8 +16,7 @@ function addDemo(row) {
     }
     if (!('Note' in row)) { row.Note = '(Anything in a Note column goes here)'; }
   }
-    /*if (!('TrustBal' in row)) { row.TrustBal = '(Trust Balance goes here)'; }
-}*/
+    
   if (!row.Invoicer) {
     row.Invoicer = {
       Name: 'Invoicer.Name',
